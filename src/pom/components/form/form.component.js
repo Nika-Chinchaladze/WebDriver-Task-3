@@ -13,6 +13,14 @@ class FormComponent extends BaseComponent {
         return this.rootEl.$('label[for="regular"]');
     }
 
+    get operationalSystemList() {
+        return this.rootEl.$('ul[aria-label="Operating System / Software"]').$("..");
+    }
+
+    get operationalSystemType() {
+        return this.rootEl.$('ul[aria-label="Operating System / Software"] li[data-value="free-debian-centos-coreos-ubuntu-or-byol-bring-your-own-license"]')
+    }
+
     get machineFamilyList() {
         return this.rootEl.$('ul[aria-label="Machine Family"]').$("..");
     }

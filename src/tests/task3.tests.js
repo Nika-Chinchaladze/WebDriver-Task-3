@@ -23,6 +23,13 @@ describe("Test Google Cloud Page", () => {
 
         // Fill form
         await page("form").numberInstance.setValue(4);
+
+        const operationalSystemList = await page("form").operationalSystemList;
+        await browser.execute((el) => el.click(), operationalSystemList);
+
+        const operationalSystemType = await page("form").operationalSystemType;
+        await browser.execute((el) => el.click(), operationalSystemType);
+
         await page("form").provisionModelRegular.click();
 
         const machineFamilyList = await page("form").machineFamilyList;
@@ -75,5 +82,9 @@ describe("Test Google Cloud Page", () => {
         await browser.pause(5000);
 
         // Assert
+        const calculatedPrice = await page("total").calculatedPrice;
+        expect(calculatedPrice).toExist();
+        expect(calculatedPrice).toBeDisplayed();
+
     });
 });

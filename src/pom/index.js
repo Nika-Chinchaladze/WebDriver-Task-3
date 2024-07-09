@@ -2,9 +2,10 @@ const SearchListComponent = require("./components/search-list/search-list.compon
 const EstimateComponent = require("./components/estimate/estimate.component");
 const ComputeEngineComponent = require("./components/engine/compute-engine.component");
 const FormComponent = require("./components/form/form.component");
+const TotalComponent = require("./components/total/total.component");
 
 /**
- * @param name { 'search' | 'estimate' | 'engine' | 'form' } 
+ * @param name { 'search' | 'estimate' | 'engine' | 'form' | 'total' } 
  * @returns 
  */
 
@@ -14,6 +15,7 @@ function page(name) {
         estimate: new EstimateComponent(),
         engine: new ComputeEngineComponent(),
         form: new FormComponent(),
+        total: new TotalComponent(),
     };
     return items[name.toLowerCase()];
 }
