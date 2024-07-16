@@ -79,6 +79,7 @@ describe("Test Google Cloud Page", () => {
         await browser.execute((el) => el.click(), regionType);
 
         await page("form").oneYear.click();
+        await browser.pause(1000);
 
         // Assert
         const calculatedPrice = await page("total").calculatedPrice;
@@ -90,25 +91,47 @@ describe("Test Google Cloud Page", () => {
         const openEstimateBtn = await page("window").openEstimateSum;
         await browser.execute((el) => el.click(), openEstimateBtn);
 
-        await browser.pause(3000);
-
         // switch to new tab
-        // const newTab = await browser.getWindowHandles();
-        // await browser.switchToWindow(newTab[newTab.length - 1]);
+        const newTab = await browser.getWindowHandles();
+        await browser.switchToWindow(newTab[newTab.length - 1]);
 
         // Number of Instances - 4
-        
+        const numberOfInstance = await page("outcome").numberOfInstance.getText();
+        expect(numberOfInstance).toBe("4");
 
         // Operating System / Software: Free: Debian, CentOS, CoreOS, Ubuntu, or another User-Provided OS
+        const operatingSystem = await page("outcome").operatingSystem.getText();
+        expect(operatingSystem).toContain("Free: Debian, CentOS, CoreOS, Ubuntu or BYOL (Bring Your Own License)");
+
         // Provisioning model: Regular
+        const provisionModel = await page("outcome").provisionModel.getText();
+        expect(provisionModel).toHaveText("Regular");
+
         // Machine Family: General purpose
         // Series: N1
-        // Machine type: n1-standard-8 (vCPUs: 8, RAM: 30 GB)
-        // GPU type: NVIDIA Tesla V100
-        // Number of GPUs: 1
-        // Local SSD: 2x375 Gb
-        // Datacenter location: Frankfurt (europe-west3)
-        // Committed usage: 1 Year
 
+        // Machine type: n1-standard-8 (vCPUs: 8, RAM: 30 GB)
+        const machineTypeFinal = await page("outcome").machineTypeFinal.getText();
+        expect(machineTypeFinal).toContain("n1-standard-8, vCPUs: 8, RAM: 30 GB");
+
+        // GPU type: NVIDIA Tesla V100
+        const cpuModel = await page("outcome").cpuModel.getText();
+        expect(cpuModel).toContain("NVIDIA TESLA");
+
+        // Number of GPUs: 1
+        const numberOfCPU = await page("outcome").numberOfCPU.getText();
+        expect(numberOfCPU).toBe("1");
+
+        // Local SSD: 2x375 Gb
+        const localSSD = await page("outcome").localSSD.getText();
+        expect(localSSD).toContain("2x375");
+
+        // Datacenter location: Frankfurt (europe-west3)
+        const region = await page("outcome").region.getText();
+        expect(region).toContain("europe-west");
+
+        // Committed usage: 1 Year
+        const commitYear = await page("outcome").commitYear.getText();
+        expect(commitYear).toContain("1");
     });
 });

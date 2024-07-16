@@ -5,9 +5,10 @@ const FormComponent = require("./components/form/form.component");
 const TotalComponent = require("./components/total/total.component");
 const WindowComponent = require("./components/window/window.component");
 const TabComponent = require("./components/tab/tab.component");
+const OutComeComponent = require("./components/outcome/outcome.component");
 
 /**
- * @param name { 'search' | 'estimate' | 'engine' | 'form' | 'total' | 'window' | 'tab' } 
+ * @param name { 'search' | 'estimate' | 'engine' | 'form' | 'total' | 'window' | 'tab' | 'outcome' } 
  * @returns 
  */
 
@@ -20,6 +21,7 @@ function page(name) {
         total: new TotalComponent(),
         window: new WindowComponent(),
         tab: new TabComponent(),
+        outcome: new OutComeComponent(),
     };
     return items[name.toLowerCase()];
 }
