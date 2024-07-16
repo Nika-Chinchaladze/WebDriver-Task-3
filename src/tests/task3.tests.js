@@ -30,7 +30,8 @@ describe("Test Google Cloud Page", () => {
         const operationalSystemType = await page("form").operationalSystemType;
         await browser.execute((el) => el.click(), operationalSystemType);
 
-        await page("form").provisionModelRegular.click();
+        const regular = await page("form").provisionModelRegular;
+        await browser.execute((el) => el.click(), regular);
 
         const machineFamilyList = await page("form").machineFamilyList;
         await browser.execute((el) => el.click(), machineFamilyList);
@@ -79,12 +80,35 @@ describe("Test Google Cloud Page", () => {
 
         await page("form").oneYear.click();
 
-        await browser.pause(5000);
-
         // Assert
         const calculatedPrice = await page("total").calculatedPrice;
         expect(calculatedPrice).toExist();
         expect(calculatedPrice).toBeDisplayed();
+
+        await page("total").shareBtn.click();
+        
+        const openEstimateBtn = await page("window").openEstimateSum;
+        await browser.execute((el) => el.click(), openEstimateBtn);
+
+        await browser.pause(3000);
+
+        // switch to new tab
+        // const newTab = await browser.getWindowHandles();
+        // await browser.switchToWindow(newTab[newTab.length - 1]);
+
+        // Number of Instances - 4
+        
+
+        // Operating System / Software: Free: Debian, CentOS, CoreOS, Ubuntu, or another User-Provided OS
+        // Provisioning model: Regular
+        // Machine Family: General purpose
+        // Series: N1
+        // Machine type: n1-standard-8 (vCPUs: 8, RAM: 30 GB)
+        // GPU type: NVIDIA Tesla V100
+        // Number of GPUs: 1
+        // Local SSD: 2x375 Gb
+        // Datacenter location: Frankfurt (europe-west3)
+        // Committed usage: 1 Year
 
     });
 });

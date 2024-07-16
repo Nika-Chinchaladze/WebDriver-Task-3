@@ -10,7 +10,7 @@ class FormComponent extends BaseComponent {
     }
 
     get provisionModelRegular() {
-        return this.rootEl.$('label[for="regular"]');
+        return this.rootEl.$('label[for*="regular"]');
     }
 
     get operationalSystemList() {
@@ -82,7 +82,7 @@ class FormComponent extends BaseComponent {
     }
 
     get oneYear() {
-        return this.rootEl.$('label[for="1-year"]');
+        return this.rootEl.$('label[for*="1-year"]');
     }
 }
 

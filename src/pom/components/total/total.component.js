@@ -10,7 +10,7 @@ class TotalComponent extends BaseComponent {
     }
 
     get shareBtn() {
-        return this.rootEl.$("");
+        return this.rootEl.$("span.FOBRw-vQzf8d");
     }
 }
 

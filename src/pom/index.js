@@ -3,9 +3,11 @@ const EstimateComponent = require("./components/estimate/estimate.component");
 const ComputeEngineComponent = require("./components/engine/compute-engine.component");
 const FormComponent = require("./components/form/form.component");
 const TotalComponent = require("./components/total/total.component");
+const WindowComponent = require("./components/window/window.component");
+const TabComponent = require("./components/tab/tab.component");
 
 /**
- * @param name { 'search' | 'estimate' | 'engine' | 'form' | 'total' } 
+ * @param name { 'search' | 'estimate' | 'engine' | 'form' | 'total' | 'window' | 'tab' } 
  * @returns 
  */
 
@@ -16,6 +18,8 @@ function page(name) {
         engine: new ComputeEngineComponent(),
         form: new FormComponent(),
         total: new TotalComponent(),
+        window: new WindowComponent(),
+        tab: new TabComponent(),
     };
     return items[name.toLowerCase()];
 }
