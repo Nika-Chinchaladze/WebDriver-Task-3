@@ -6,9 +6,10 @@ const TotalComponent = require("./components/total/total.component");
 const WindowComponent = require("./components/window/window.component");
 const TabComponent = require("./components/tab/tab.component");
 const OutComeComponent = require("./components/outcome/outcome.component");
+const HeaderComponent = require("./components/header/header.component");
 
 /**
- * @param name { 'search' | 'estimate' | 'engine' | 'form' | 'total' | 'window' | 'tab' | 'outcome' } 
+ * @param name { 'search' | 'estimate' | 'engine' | 'form' | 'total' | 'window' | 'tab' | 'outcome' | 'header' } 
  * @returns 
  */
 
@@ -22,6 +23,7 @@ function page(name) {
         window: new WindowComponent(),
         tab: new TabComponent(),
         outcome: new OutComeComponent(),
+        header: new HeaderComponent(),
     };
     return items[name.toLowerCase()];
 }

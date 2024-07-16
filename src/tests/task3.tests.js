@@ -1,20 +1,25 @@
 const { expect, browser } = require('@wdio/globals');
+const { remote } = require('webdriverio');
 
 const { page } = require("../pom/index");
 
 describe("Test Google Cloud Page", () => {
     beforeEach(async () => {
         await browser.maximizeWindow();
-        // await browser.url("https://cloud.google.com/");
-        await browser.url("https://cloud.google.com/search?hl=en&q=Google%20Cloud%20Platform%20Pricing%20Calculator");
+        const basicURL = "https://cloud.google.com/";
+        const secondaryURL = "https://cloud.google.com/search?hl=en&q=Google%20Cloud%20Platform%20Pricing%20Calculator";
+
+        // await browser.url(basicURL);
+        // await page("header").searchIcon.click();
+        // await page("header").searchInput.setValue("Google Cloud Platform Pricing Calculator");
+        // await browser.keys("Enter");
+
+        await browser.url(secondaryURL);
+        
     });
 
     it("should test Google Cloud Platform Pricing Calculator", async () => {
         // Act
-        // await $(".DPvwYc").click();
-        // await $("#i4").setValue("Google Cloud Platform Pricing Calculator");
-        // await browser.keys("Enter");
-
         await page("search").pricingCalculator.click();
         await page("estimate").addEstimate.click();
 
