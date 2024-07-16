@@ -1,5 +1,4 @@
 const { expect, browser } = require('@wdio/globals');
-const { remote } = require('webdriverio');
 
 const { page } = require("../pom/index");
 
